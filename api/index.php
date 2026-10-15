@@ -10,9 +10,12 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
-// Pastikan direktori sementara di /tmp tersedia untuk Laravel cache, views, logs, dan sessions
+// Pastikan seluruh direktori sementara di /tmp tersedia
 $tmpStorage = [
     '/tmp/views',
+    '/tmp/storage',
+    '/tmp/storage/app',
+    '/tmp/storage/framework',
     '/tmp/storage/framework/views',
     '/tmp/storage/framework/cache',
     '/tmp/storage/framework/cache/data',
@@ -37,8 +40,18 @@ if (file_exists($maintenance = __DIR__ . '/../storage/framework/maintenance.php'
 // Autoload Composer dependencies
 require __DIR__ . '/../vendor/autoload.php';
 
-// Bootstrap Laravel Application
-/** @var Application $app */
-$app = require_once __DIR__ . '/../bootstrap/app.php';
+try {
+    // Bootstrap Laravel Application
+    /** @var Application $app */
+    $app = require_once __DIR__ . '/../bootstrap/app.php';
+    $app->useStoragePath('/tmp/storage');
 
-$app->handleRequest(Request::capture());
+    $app->handleRequest(Request::capture());
+} catch (\Throwable $e) {
+    http_response_code(500);
+    header('Content-Type: text/plain; charset=utf-8');
+    echo "SERVERLESS BOOTSTRAP ERROR:\n";
+    echo $e->getMessage() . "\n\n";
+    echo $e->getFile() . ":" . $e->getLine() . "\n\n";
+    echo $e->getTraceAsString();
+}
