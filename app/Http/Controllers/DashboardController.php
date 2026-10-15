@@ -146,11 +146,11 @@ class DashboardController extends Controller
     protected function seedDemoUser(): User
     {
         $user = User::create([
-            'name' => 'Adit Pratama',
-            'email' => 'adit@keuangankita.id',
+            'name' => 'aditGanteng',
+            'email' => 'aditganteng@keuangankita.id',
             'password' => bcrypt('password123'),
             'telegram_chat_id' => 12345678,
-            'telegram_username' => 'aditpratama',
+            'telegram_username' => 'aditganteng',
         ]);
 
         $bca = $user->wallets()->create([
