@@ -21,5 +21,8 @@ foreach ($tmpStorage as $dir) {
     }
 }
 
+// Normalisasi SCRIPT_NAME agar Symfony / Laravel router mencocokkan URI path dengan benar
+$_SERVER['SCRIPT_NAME'] = '/index.php';
+
 // Forward execution ke public/index.php Laravel
 require __DIR__ . '/../public/index.php';
