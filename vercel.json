@@ -6,7 +6,7 @@
     "api/index.php": {
       "runtime": "vercel-php@0.7.3",
       "memory": 1024,
-      "maxDuration": 15
+      "maxDuration": 30
     }
   },
   "routes": [
@@ -28,16 +28,24 @@
     }
   ],
   "env": {
+    "APP_NAME": "Keuangan Kita",
     "APP_ENV": "production",
+    "APP_KEY": "base64:qgzZmkE6HcoG2Rf2JfjHWijESMLEA7N9iHZm1QLJ4CA=",
     "APP_DEBUG": "false",
-    "APP_CONFIG_CACHE": "/tmp/config.php",
-    "APP_EVENTS_CACHE": "/tmp/events.php",
-    "APP_PACKAGES_CACHE": "/tmp/packages.php",
-    "APP_ROUTES_CACHE": "/tmp/routes.php",
-    "APP_SERVICES_CACHE": "/tmp/services.php",
-    "VIEW_COMPILED_PATH": "/tmp/views",
+    "APP_URL": "https://keuangan-kita-eight.vercel.app",
+    "APP_TIMEZONE": "Asia/Jakarta",
+    "DB_CONNECTION": "pgsql",
+    "DB_HOST": "aws-0-ap-south-1.pooler.supabase.com",
+    "DB_PORT": "5432",
+    "DB_DATABASE": "postgres",
+    "DB_USERNAME": "postgres.kwdzwagxquzgluflqkle",
+    "DB_PASSWORD": "jJ@!n9x-6ZU-7As",
+    "DB_SSLMODE": "require",
+    "SESSION_DRIVER": "cookie",
     "CACHE_STORE": "database",
-    "SESSION_DRIVER": "database",
-    "LOG_CHANNEL": "stderr"
+    "LOG_CHANNEL": "stderr",
+    "VIEW_COMPILED_PATH": "/tmp/views",
+    "TELEGRAM_BOT_TOKEN": "8826778339:AAHeqWwSHvcd_soR7ZgEeIkQ6x1vSzvPVh8",
+    "TELEGRAM_WEBHOOK_SECRET": "keuangankita_secret_token_2026"
   }
 }
