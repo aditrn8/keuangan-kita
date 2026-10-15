@@ -1,9 +1,14 @@
 <?php
 
 /**
- * Vercel Serverless PHP Adapter Bridge
+ * Vercel Serverless PHP Entrypoint
  * Keuangan Kita
  */
+
+use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
+
+define('LARAVEL_START', microtime(true));
 
 // Pastikan direktori sementara di /tmp tersedia untuk Laravel cache, views, logs, dan sessions
 $tmpStorage = [
@@ -21,8 +26,19 @@ foreach ($tmpStorage as $dir) {
     }
 }
 
-// Normalisasi SCRIPT_NAME agar Symfony / Laravel router mencocokkan URI path dengan benar
+// Normalisasi SCRIPT_NAME untuk routing Laravel di serverless environment
 $_SERVER['SCRIPT_NAME'] = '/index.php';
 
-// Forward execution ke public/index.php Laravel
-require __DIR__ . '/../public/index.php';
+// Maintenance mode check jika ada
+if (file_exists($maintenance = __DIR__ . '/../storage/framework/maintenance.php')) {
+    require $maintenance;
+}
+
+// Autoload Composer dependencies
+require __DIR__ . '/../vendor/autoload.php';
+
+// Bootstrap Laravel Application
+/** @var Application $app */
+$app = require_once __DIR__ . '/../bootstrap/app.php';
+
+$app->handleRequest(Request::capture());
