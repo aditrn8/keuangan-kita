@@ -21,4 +21,15 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );
+
+        $exceptions->respond(function ($response, \Throwable $e, Request $request) {
+            return response(
+                "SERVERLESS DIAGNOSTIC EXCEPTION:\n" .
+                $e->getMessage() . "\n\n" .
+                $e->getFile() . ":" . $e->getLine() . "\n\n" .
+                $e->getTraceAsString(),
+                500,
+                ['Content-Type' => 'text/plain; charset=utf-8']
+            );
+        });
     })->create();
