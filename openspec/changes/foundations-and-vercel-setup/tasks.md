@@ -1,0 +1,24 @@
+# Tasks: Foundations & Vercel Serverless Setup
+
+- [x] 1. Inisialisasi Proyek Laravel & Dependensi Core <!-- id: 1-init-laravel -->
+  - [x] 1.1 Inisialisasi kerangka aplikasi Laravel 11/12 di root workspace
+  - [x] 1.2 Konfigurasi timezone `Asia/Jakarta` dan locale `id` pada `config/app.php`
+  - [x] 1.3 Setup `.env.example` dengan variabel Telegram dan PostgreSQL Supabase/Neon
+- [x] 2. Konfigurasi Vercel Serverless <!-- id: 2-vercel-setup -->
+  - [x] 2.1 Buat berkas `vercel.json` dengan runtime PHP serverless (`vercel-php@0.7.3`) dan rewrite rules
+  - [x] 2.2 Buat adapter bridge `api/index.php` dengan inisialisasi `/tmp/storage` otomatis
+  - [x] 2.3 Perbarui `AppServiceProvider.php` untuk mengalihkan storage path ke `/tmp/storage` di environment Vercel
+  - [x] 2.4 Tambahkan berkas `.vercelignore` untuk optimasi upload artefak
+- [x] 3. Database Migrations Core <!-- id: 3-db-migrations -->
+  - [x] 3.1 Migration update tabel `users` (tambahkan `telegram_chat_id`, `telegram_username`, `link_token`)
+  - [x] 3.2 Migration tabel `wallets` (`id`, `user_id`, `name`, `type`, `balance` BIGINT, `is_default`, `timestamps`)
+  - [x] 3.3 Migration tabel `categories` (`id`, `user_id` nullable, `name`, `type`, `icon`, `color`, `timestamps`)
+  - [x] 3.4 Migration tabel `transactions` (`id`, `user_id`, `wallet_id`, `category_id`, `type`, `amount` BIGINT, `notes`, `source`, `transacted_at`, `timestamps`)
+- [x] 4. Eloquent Models & Relations <!-- id: 4-eloquent-models -->
+  - [x] 4.1 Buat model `Wallet` dengan `$fillable`, cast integer, dan relasi ke `User` & `Transaction`
+  - [x] 4.2 Buat model `Category` dengan `$fillable` dan relasi ke `Transaction`
+  - [x] 4.3 Buat model `Transaction` dengan `$fillable`, cast `amount` integer & `transacted_at` datetime, dan relasi ke `Wallet` & `Category`
+  - [x] 4.4 Perbarui model `User` dengan relasi `hasMany` ke `Wallet`, `Category`, dan `Transaction`
+- [x] 5. Verifikasi & Pengujian <!-- id: 5-verification -->
+  - [x] 5.1 Jalankan syntax linting dan static check model
+  - [x] 5.2 Uji local serve dan validasi struktur konfigurasi `vercel.json`

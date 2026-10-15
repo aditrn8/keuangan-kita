@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Business Requirements Document - Keuangan Kita</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    @page {
+      size: A4;
+      margin: 12mm 12mm 12mm 12mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1e293b;
+      background: #ffffff;
+      line-height: 1.5;
+      font-size: 10pt;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .no-break {
+      page-break-inside: avoid;
+    }
+
+    /* HEADER */
+    .doc-header {
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .brand-title {
+      font-size: 22pt;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+      margin: 0 0 2px 0;
+    }
+
+    .brand-title span {
+      color: #0284c7;
+    }
+
+    .doc-subtitle {
+      font-size: 10.5pt;
+      color: #64748b;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .meta-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .meta-item {
+      font-size: 8.5pt;
+    }
+
+    .meta-label {
+      color: #64748b;
+      text-transform: uppercase;
+      font-size: 7pt;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .meta-value {
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .badge-status {
+      display: inline-block;
+      background: #dcfce7;
+      color: #15803d;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 7.5pt;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    /* SECTION HEADINGS */
+    h2 {
+      font-size: 13pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-left: 4px solid #0284c7;
+      padding-left: 10px;
+      margin-top: 16px;
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
+    }
+
+    h3 {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 12px;
+      margin-bottom: 6px;
+    }
+
+    p {
+      margin: 0 0 8px 0;
+      color: #334155;
+    }
+
+    /* TABLES */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 12px 0;
+      font-size: 8.5pt;
+      page-break-inside: avoid;
+    }
+
+    th {
+      background: #0f172a;
+      color: #ffffff;
+      text-align: left;
+      padding: 6px 8px;
+      font-weight: 600;
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: middle;
+      color: #334155;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    .table-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    /* CARDS */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 8px 0 12px 0;
+    }
+
+    .card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: #ffffff;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .card-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 10pt;
+    }
+
+    .card-title {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0;
+    }
+
+    /* TELEGRAM CHAT MOCKUPS */
+    .chat-container {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 8px 0 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .bubble-user {
+      align-self: flex-end;
+      background: #0284c7;
+      color: #ffffff;
+      padding: 6px 12px;
+      border-radius: 12px 12px 2px 12px;
+      font-size: 8.5pt;
+      max-width: 70%;
+      font-weight: 500;
+    }
+
+    .bubble-bot {
+      align-self: flex-start;
+      background: #ffffff;
+      color: #0f172a;
+      padding: 8px 12px;
+      border-radius: 12px 12px 12px 2px;
+      font-size: 8.5pt;
+      max-width: 80%;
+      border: 1px solid #e2e8f0;
+      line-height: 1.4;
+    }
+
+    .bot-receipt-title {
+      font-weight: 700;
+      color: #16a34a;
+      margin-bottom: 4px;
+    }
+
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 2px 0;
+      font-size: 8pt;
+    }
+
+    .receipt-label {
+      color: #64748b;
+    }
+
+    .receipt-val {
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .chat-buttons {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .chat-btn {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      font-size: 7.5pt;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 5px;
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 8px;
+      font-size: 8pt;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HALAMAN 1: EXECUTIVE SUMMARY & USER STORIES ==================== -->
+  <div class="doc-header">
+    <div>
+      <h1 class="brand-title">Keuangan<span>Kita</span></h1>
+      <p class="doc-subtitle">Business Requirements Document (BRD) — Telegram Bot & Web Financial Dashboard</p>
+    </div>
+    <div>
+      <span class="badge-status">APPROVED FOR IMPLEMENTATION</span>
+    </div>
+  </div>
+
+  <div class="meta-box">
+    <div class="meta-item">
+      <div class="meta-label">Dokumen ID</div>
+      <div class="meta-value">BRD-KK-001</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Versi Dokumen</div>
+      <div class="meta-value">v1.0.0 (Final)</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Tanggal Efektif</div>
+      <div class="meta-value">15 Oktober 2026</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Target Stack</div>
+      <div class="meta-value">Laravel 11+ / Vercel / Telegram Bot</div>
+    </div>
+  </div>
+
+  <h2>1. Executive Summary & Problem Statement</h2>
+  <p>
+    <strong>Keuangan Kita</strong> memadukan kecepatan antarmuka <em>Telegram Bot</em> untuk pencatatan transaksi instan (&lt; 3 detik) dengan kecanggihan <em>Web Dashboard Laravel</em> untuk visualisasi analitik tren keuangan harian, mingguan, dan bulanan.
+  </p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background: #fee2e2; color: #dc2626;">✕</div>
+        <h3 class="card-title">Masalah Pengguna (Pain Points)</h3>
+      </div>
+      <ul style="font-size: 8.5pt; margin: 0; padding-left: 14px; color: #475569;">
+        <li><strong>Friksi Input Tinggi:</strong> Aplikasi konvensional butuh 20–30 detik, pengeluaran mikro sering lupa dicatat.</li>
+        <li><strong>Blindspot Saldo:</strong> Sulit mengecek sisa uang riil sebelum belanja di kasir toko.</li>
+        <li><strong>Analisis Manual:</strong> Sulit mengevaluasi tren tanpa mengolah spreadsheet rumit.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background: #dcfce7; color: #16a34a;">✓</div>
+        <h3 class="card-title">Solusi Keuangan Kita</h3>
+      </div>
+      <ul style="font-size: 8.5pt; margin: 0; padding-left: 14px; color: #475569;">
+        <li><strong>Input Kilat:</strong> Cukup kirim <code>/catat 50000 makan</code> via Telegram, tanggal otomatis terekam.</li>
+        <li><strong>Cek Saldo Instan:</strong> Perintah <code>/saldo</code> langsung merangkum kas dan dompet digital.</li>
+        <li><strong>Monitoring Terpadu:</strong> Grafik tren harian/mingguan/bulanan di web & rekap otomatis via bot.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>2. User Personas & User Stories</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h3 style="margin-top: 0; font-size: 9pt; color: #0284c7;">Andi (26 th, Karyawan)</h3>
+      <p style="font-size: 8pt; color: #64748b; margin-bottom: 4px;">Karakter: Mobilitas tinggi, sering transaksi jajan mikro.</p>
+      <div style="font-size: 8.5pt; background: #f8fafc; padding: 6px; border-radius: 4px;">
+        <em>"Saya ingin catat kopi dan makan siang seketika via Telegram tanpa repot buka aplikasi berat."</em>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top: 0; font-size: 9pt; color: #0284c7;">Siti (31 th, Family Budgeter)</h3>
+      <p style="font-size: 8pt; color: #64748b; margin-bottom: 4px;">Karakter: Terencana, mengawasi alokasi pos anggaran.</p>
+      <div style="font-size: 8.5pt; background: #f8fafc; padding: 6px; border-radius: 4px;">
+        <em>"Saya ingin lihat grafik tren mingguan & bulanan di laptop, serta terima rekap otomatis tiap awal bulan."</em>
+      </div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 14%;">Story ID</th>
+        <th style="width: 22%;">Sebagai...</th>
+        <th style="width: 36%;">Saya Ingin...</th>
+        <th style="width: 28%;">Sehingga...</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="table-code">US-01</span></td>
+        <td>Pengguna Bot</td>
+        <td>Mencatat pengeluaran lewat chat <code>/catat 50000 makan</code></td>
+        <td>Transaksi langsung terekam tanpa buka browser.</td>
+      </tr>
+      <tr>
+        <td><span class="table-code">US-02</span></td>
+        <td>Pengguna Bot</td>
+        <td>Tanggal & jam transaksi tercatat otomatis saat chat dikirim</td>
+        <td>Histori akurat tanpa input tanggal manual.</td>
+      </tr>
+      <tr>
+        <td><span class="table-code">US-03</span></td>
+        <td>Pengguna Bot</td>
+        <td>Cek saldo sisa instan dengan perintah <code>/saldo</code></td>
+        <td>Tahu sisa saldo aman sebelum berbelanja.</td>
+      </tr>
+      <tr>
+        <td><span class="table-code">US-04</span></td>
+        <td>Pengguna Bot</td>
+        <td>Menerima rekap bulanan on-demand dan otomatis awal bulan</td>
+        <td>Evaluasi finansial bulanan terpantau konsisten.</td>
+      </tr>
+      <tr>
+        <td><span class="table-code">US-05</span></td>
+        <td>Pengguna Web</td>
+        <td>Memonitor grafik harian, mingguan, bulanan di Web Dashboard</td>
+        <td>Memahami tren belanja dan kategori pengeluaran terbesar.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== HALAMAN 2: FUNCTIONAL REQUIREMENTS ==================== -->
+  <div class="page-break"></div>
+
+  <h2>3. Functional Requirements (Kebutuhan Fungsional)</h2>
+
+  <h3>3.1 Modul Telegram Bot (FR-BOT)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 16%;">Kode FR</th>
+        <th style="width: 28%;">Fitur & Perintah</th>
+        <th style="width: 56%;">Aturan Bisnis & Spesifikasi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="table-code">FR-BOT-01</span></td>
+        <td><strong>Pencatatan Kilat (/catat)</strong></td>
+        <td>
+          Format: <code>/catat [nominal] [keterangan]</code> atau alias <code>/keluar</code>, <code>/masuk</code>.<br>
+          Mendukung angka Indonesia: <code>50k</code>, <code>50rb</code>, <code>50.000</code>, <code>1.5jt</code>.
+        </td>
+      </tr>
+      <tr>
+        <td><span class="table-code">FR-BOT-02</span></td>
+        <td><strong>Auto-Timestamping</strong></td>
+        <td>
+          Setiap transaksi otomatis mengisi <code>transacted_at</code> dengan waktu penerimaan server (WIB).
+        </td>
+      </tr>
+      <tr>
+        <td><span class="table-code">FR-BOT-03</span></td>
+        <td><strong>Cek Saldo Sisa (/saldo)</strong></td>
+        <td>
+          Menampilkan total saldo gabungan dan rincian per dompet (BCA, Kas Tunai, GoPay, dll.).
+        </td>
+      </tr>
+      <tr>
+        <td><span class="table-code">FR-BOT-04</span></td>
+        <td><strong>Rekap Bulanan On-Demand</strong></td>
+        <td>
+          Perintah <code>/laporan</code> atau <code>/rekap</code> menampilkan rekap bulan berjalan (Income, Expense, Net, Top 3 Kategori).
+        </td>
+      </tr>
+      <tr>
+        <td><span class="table-code">FR-BOT-05</span></td>
+        <td><strong>Rekap Bulanan Otomatis</strong></td>
+        <td>
+          Trigger via Vercel Cron tiap tanggal 1 pukul 08:00 WIB untuk mengirimkan rekap bulan lalu ke semua user aktif.
+        </td>
+      </tr>
+      <tr>
+        <td><span class="table-code">FR-BOT-06</span></td>
+        <td><strong>Interactive Struk & Undo</strong></td>
+        <td>
+          Bot membalas struk konfirmasi disertai inline button <code>[🗑 Batalkan Transaksi]</code> (aktif 5 menit).
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>3.2 Modul Web Dashboard Laravel (FR-WEB)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 16%;">Kode FR</th>
+        <th style="width: 28%;">Fitur Dashboard</th>
+        <th style="width: 56%;">Aturan Bisnis & Spesifikasi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="table-code">FR-WEB-01</span></td>
+        <td><strong>Monitoring Tren Harian</strong></td>
+        <td>Bar chart perbandingan pengeluaran vs pemasukan harian (7–30 hari terakhir).</td>
+      </tr>
+      <tr>
+        <td><span class="table-code">FR-WEB-02</span></td>
+        <td><strong>Monitoring Tren Mingguan</strong></td>
+        <td>Agregasi pengeluaran per minggu (Week 1–4/5) untuk memantau lonjakan belanja akhir pekan.</td>
+      </tr>
+      <tr>
+        <td><span class="table-code">FR-WEB-03</span></td>
+        <td><strong>Monitoring Tren Bulanan</strong></td>
+        <td>Grafik komparasi 6–12 bulan terakhir untuk evaluasi tren tabungan jangka panjang.</td>
+      </tr>
+      <tr>
+        <td><span class="table-code">FR-WEB-04</span></td>
+        <td><strong>Donut Chart Komposisi Kategori</strong></td>
+        <td>Visualisasi persentase pengeluaran berdasarkan kategori (Makanan, Transportasi, Belanja, dll.).</td>
+      </tr>
+      <tr>
+        <td><span class="table-code">FR-WEB-05</span></td>
+        <td><strong>Tabel Riwayat & Filter</strong></td>
+        <td>CRUD transaksi lengkap dengan pagination, filter rentang tanggal, filter dompet, dan export data.</td>
+      </tr>
+      <tr>
+        <td><span class="table-code">FR-WEB-06</span></td>
+        <td><strong>Manajemen Dompet & Kategori</strong></td>
+        <td>Pengaturan akun dompet (BCA, GoPay, Cash) dan custom kategori pengeluaran/pemasukan.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== HALAMAN 3: SIMULASI CHAT & SKEMA ERD ==================== -->
+  <div class="page-break"></div>
+
+  <h2>4. Simulasi Percakapan Telegram Bot</h2>
+  <div class="chat-container no-break">
+    <div class="bubble-user">/catat 50000 Nasi Padang + Es Teh</div>
+    <div class="bubble-bot">
+      <div class="bot-receipt-title">🟢 Pengeluaran Berhasil Dicatat!</div>
+      <div class="receipt-row"><span class="receipt-label">💵 Nominal:</span><span class="receipt-val">Rp 50.000</span></div>
+      <div class="receipt-row"><span class="receipt-label">🏷 Kategori:</span><span class="receipt-val">Makanan & Minuman</span></div>
+      <div class="receipt-row"><span class="receipt-label">👛 Dompet:</span><span class="receipt-val">BCA (Utama)</span></div>
+      <div class="receipt-row"><span class="receipt-label">📝 Catatan:</span><span class="receipt-val">Nasi Padang + Es Teh</span></div>
+      <div class="receipt-row"><span class="receipt-label">📅 Waktu:</span><span class="receipt-val">15 Okt 2026, 12:35 WIB (Otomatis)</span></div>
+      <div style="border-top: 1px dashed #cbd5e1; margin-top: 4px; padding-top: 3px;" class="receipt-row">
+        <span class="receipt-label">💳 Sisa Saldo BCA:</span><span class="receipt-val" style="color: #0284c7;">Rp 1.450.000</span>
+      </div>
+      <div class="chat-buttons">
+        <span class="chat-btn">🗑 Batalkan Transaksi</span>
+        <span class="chat-btn">🏷 Ubah Kategori</span>
+      </div>
+    </div>
+
+    <div class="bubble-user">/saldo</div>
+    <div class="bubble-bot">
+      <div style="font-weight: 700; margin-bottom: 4px;">💼 Ringkasan Saldo Anda</div>
+      <div class="receipt-row"><span class="receipt-label">🏦 BCA:</span><span class="receipt-val">Rp 1.450.000</span></div>
+      <div class="receipt-row"><span class="receipt-label">📱 GoPay:</span><span class="receipt-val">Rp 215.000</span></div>
+      <div class="receipt-row"><span class="receipt-label">💵 Tunai:</span><span class="receipt-val">Rp 85.000</span></div>
+      <div style="border-top: 1px solid #94a3b8; margin-top: 4px; padding-top: 3px;" class="receipt-row">
+        <span class="receipt-label"><strong>💰 Total Saldo:</strong></span>
+        <span class="receipt-val" style="color: #16a34a; font-weight: 800;">Rp 1.750.000</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>5. Skema Entitas Data (ERD)</h2>
+  <p>Skema database relasional di atas PostgreSQL / MySQL untuk integritas data dan kompatibilitas serverless Vercel.</p>
+
+  <div style="text-align: center; margin: 10px 0;" class="no-break">
+    <svg width="600" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+      <!-- USERS -->
+      <rect x="10" y="10" width="165" height="175" rx="6" fill="#f8fafc" stroke="#0284c7" stroke-width="2"/>
+      <rect x="10" y="10" width="165" height="28" rx="6" fill="#0284c7"/>
+      <text x="92" y="29" fill="#fff" font-weight="700" font-size="10" text-anchor="middle">USERS</text>
+      <text x="22" y="55" font-size="8.5" fill="#0f172a" font-weight="700">PK  id (bigint)</text>
+      <text x="22" y="75" font-size="8.5" fill="#334155">name (varchar)</text>
+      <text x="22" y="95" font-size="8.5" fill="#334155">email (varchar)</text>
+      <text x="22" y="115" font-size="8.5" fill="#0284c7" font-weight="700">telegram_chat_id</text>
+      <text x="22" y="135" font-size="8.5" fill="#334155">link_token (varchar)</text>
+      <text x="22" y="155" font-size="8.5" fill="#64748b">timestamps</text>
+
+      <!-- WALLETS -->
+      <rect x="215" y="10" width="165" height="175" rx="6" fill="#f8fafc" stroke="#0284c7" stroke-width="2"/>
+      <rect x="215" y="10" width="165" height="28" rx="6" fill="#0284c7"/>
+      <text x="297" y="29" fill="#fff" font-weight="700" font-size="10" text-anchor="middle">WALLETS</text>
+      <text x="227" y="55" font-size="8.5" fill="#0f172a" font-weight="700">PK  id (bigint)</text>
+      <text x="227" y="75" font-size="8.5" fill="#334155">FK  user_id (bigint)</text>
+      <text x="227" y="95" font-size="8.5" fill="#334155">name (BCA, Cash)</text>
+      <text x="227" y="115" font-size="8.5" fill="#16a34a" font-weight="700">balance (BIGINT IDR)</text>
+      <text x="227" y="135" font-size="8.5" fill="#334155">is_default (boolean)</text>
+      <text x="227" y="155" font-size="8.5" fill="#64748b">timestamps</text>
+
+      <!-- TRANSACTIONS -->
+      <rect x="420" y="10" width="170" height="175" rx="6" fill="#f8fafc" stroke="#0284c7" stroke-width="2"/>
+      <rect x="420" y="10" width="170" height="28" rx="6" fill="#0284c7"/>
+      <text x="505" y="29" fill="#fff" font-weight="700" font-size="10" text-anchor="middle">TRANSACTIONS</text>
+      <text x="432" y="55" font-size="8.5" fill="#0f172a" font-weight="700">PK  id (bigint)</text>
+      <text x="432" y="75" font-size="8.5" fill="#334155">FK  user_id (bigint)</text>
+      <text x="432" y="95" font-size="8.5" fill="#334155">FK  wallet_id (bigint)</text>
+      <text x="432" y="115" font-size="8.5" fill="#16a34a" font-weight="700">amount (BIGINT IDR)</text>
+      <text x="432" y="135" font-size="8.5" fill="#334155">type (expense/income)</text>
+      <text x="432" y="155" font-size="8.5" fill="#d97706" font-weight="700">transacted_at (DATETIME)</text>
+
+      <!-- Connectors -->
+      <line x1="175" y1="90" x2="215" y2="90" stroke="#94a3b8" stroke-width="2" stroke-dasharray="3"/>
+      <line x1="380" y1="90" x2="420" y2="90" stroke="#94a3b8" stroke-width="2" stroke-dasharray="3"/>
+    </svg>
+  </div>
+
+  <!-- ==================== HALAMAN 4: NFR & ROADMAP ==================== -->
+  <div class="page-break"></div>
+
+  <h2>6. Non-Functional Requirements & Security Guidelines</h2>
+  <div class="card-grid no-break">
+    <div class="card">
+      <h3 style="margin-top: 0; color: #0284c7; font-size: 9.5pt;">Keamanan & Integritas Data</h3>
+      <ul style="font-size: 8.5pt; margin: 0; padding-left: 14px; color: #475569;">
+        <li><strong>No Float Rule:</strong> Nominal wajib <code>BIGINT</code> rupiah utuh (menghindari rounding error).</li>
+        <li><strong>Concurrency Locking:</strong> Mutasi saldo dalam <code>DB::transaction()</code> dengan <code>lockForUpdate()</code>.</li>
+        <li><strong>IDOR Scoping:</strong> Proteksi akses data user via Laravel Policy dan User relation scoping.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top: 0; color: #0284c7; font-size: 9.5pt;">Vercel Serverless Optimization</h3>
+      <ul style="font-size: 8.5pt; margin: 0; padding-left: 14px; color: #475569;">
+        <li><strong>Sub-second Webhook:</strong> Webhook segera kirim <code>200 OK</code> &lt; 1 detik (cegah retry storm).</li>
+        <li><strong>Stateless Sessions:</strong> Session obrolan disimpan di Database/Redis, bukan file session lokal.</li>
+        <li><strong>Ephemeral Storage:</strong> Cache dan views dialihkan ke <code>/tmp/storage</code> di runtime Vercel.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>7. Roadmap Implementasi (OpenSpec Milestones)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 14%;">Milestone</th>
+        <th style="width: 26%;">Fokus Modul</th>
+        <th style="width: 46%;">Deliverables Kunci</th>
+        <th style="width: 14%;">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Fase 1</strong></td>
+        <td>Foundations & Vercel</td>
+        <td>Setup Laravel 11, <code>vercel.json</code>, <code>api/index.php</code> bridge, DB Migrations.</td>
+        <td><span class="badge-status">SIAP JALAN</span></td>
+      </tr>
+      <tr>
+        <td><strong>Fase 2</strong></td>
+        <td>Telegram Bot Webhook</td>
+        <td>Secret token verify, smart parser (50k, 50rb), <code>/catat</code>, <code>/saldo</code>, auto-timestamp.</td>
+        <td><span class="badge-status">SIAP JALAN</span></td>
+      </tr>
+      <tr>
+        <td><strong>Fase 3</strong></td>
+        <td>Web Dashboard Analytics</td>
+        <td>Chart harian, mingguan, bulanan, donut chart kategori, data table & filter.</td>
+        <td><span class="badge-status">SIAP JALAN</span></td>
+      </tr>
+      <tr>
+        <td><strong>Fase 4</strong></td>
+        <td>Automated Monthly Recap</td>
+        <td>Perintah <code>/laporan</code> dan Vercel Cron tiap awal bulan untuk push report Telegram.</td>
+        <td><span class="badge-status">SIAP JALAN</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer-note">
+    <span>Keuangan Kita © 2026 — Product & Engineering Team</span>
+    <span>Generated via brd-generator & Edge PDF Engine</span>
+  </div>
+
+</body>
+</html>
