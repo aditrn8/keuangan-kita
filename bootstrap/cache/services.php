@@ -26,14 +26,9 @@
     22 => 'Illuminate\\Validation\\ValidationServiceProvider',
     23 => 'Illuminate\\View\\ViewServiceProvider',
     24 => 'Illuminate\\View\\ViewServiceProvider',
-    25 => 'Laravel\\Pail\\PailServiceProvider',
-    26 => 'Laravel\\Pao\\Laravel\\ServiceProvider',
-    27 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    28 => 'Carbon\\Laravel\\ServiceProvider',
-    29 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    30 => 'Termwind\\Laravel\\TermwindServiceProvider',
-    31 => 'App\\Providers\\AppServiceProvider',
-    32 => 'App\\Providers\\AppServiceProvider',
+    25 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    26 => 'App\\Providers\\AppServiceProvider',
+    27 => 'App\\Providers\\AppServiceProvider',
   ),
   'eager' => 
   array (
@@ -48,13 +43,8 @@
     8 => 'Illuminate\\Session\\SessionServiceProvider',
     9 => 'Illuminate\\View\\ViewServiceProvider',
     10 => 'Illuminate\\View\\ViewServiceProvider',
-    11 => 'Laravel\\Pail\\PailServiceProvider',
-    12 => 'Laravel\\Pao\\Laravel\\ServiceProvider',
-    13 => 'Carbon\\Laravel\\ServiceProvider',
-    14 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    15 => 'Termwind\\Laravel\\TermwindServiceProvider',
-    16 => 'App\\Providers\\AppServiceProvider',
-    17 => 'App\\Providers\\AppServiceProvider',
+    11 => 'App\\Providers\\AppServiceProvider',
+    12 => 'App\\Providers\\AppServiceProvider',
   ),
   'deferred' => 
   array (
